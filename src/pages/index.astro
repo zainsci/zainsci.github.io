@@ -1,0 +1,72 @@
+---
+import Layout from "../layouts/Layout.astro"
+import Card from "../components/Card.astro"
+import projects, { Repo } from "../lib/projects"
+---
+
+<Layout title="Projects - zainsci.dev">
+	<main>
+		<h1><span class="text-gradient">Projects</span></h1>
+		<p class="instructions">
+			This is a little list of <strong>little projects</strong> I have worked on.
+			<br />
+			Visit my
+			<code>
+				<a href="https://zainsci.dev">Portfolio</a>
+			</code>
+			& follow me on
+			<code>
+				<a href="https://twitter.com/zainsci">Twitter</a>
+			</code>
+		</p>
+		<ul class="link-card-grid">
+			{projects.map((value: Repo) => <Card {...value} />)}
+		</ul>
+	</main>
+</Layout>
+
+<style>
+	main {
+		margin: auto;
+		padding: 1.5rem;
+		max-width: 70ch;
+		min-width: 40rem;
+	}
+	h1 {
+		font-size: 3rem;
+		font-weight: 800;
+		margin: 0;
+	}
+	.text-gradient {
+		background-image: var(--accent-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-size: 400%;
+		background-position: 0%;
+	}
+	.instructions {
+		line-height: 1.6;
+		margin: 1rem 0;
+		border: 1px solid rgba(var(--accent), 25%);
+		background-color: white;
+		padding: 1rem;
+		border-radius: 0.4rem;
+	}
+	.instructions code {
+		font-size: 0.875em;
+		font-weight: bold;
+		background: rgba(var(--accent), 12%);
+		color: rgb(var(--accent));
+		border-radius: 4px;
+		padding: 0.3em 0.45em;
+	}
+	.instructions strong {
+		color: rgb(var(--accent));
+	}
+	.link-card-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(35ch, 1fr));
+		gap: 1rem;
+		padding: 0;
+	}
+</style>

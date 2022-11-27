@@ -1,0 +1,142 @@
+---
+import { Repo } from "../lib/projects"
+
+const { name, description, url, github_url, language } = Astro.props
+---
+
+<li class="wrapper">
+	<div class="card">
+		<a href={github_url} class="card-link">
+			<h2>
+				{name}
+			</h2>
+			<p>{description}</p>
+		</a>
+		<div class="card-footer">
+			<div class="lang">
+				{language}
+			</div>
+			<div class="card-links">
+				<a href={github_url} rel="noopener noreferrer" target="_blank"
+					><svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="16"
+						height="16"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						class="feather feather-github"
+						><path
+							d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+						></path>
+					</svg>
+				</a>
+				{
+					url && (
+						<a href="">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="16"
+								height="16"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								class="feather feather-link-2"
+							>
+								<>
+									<path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3" />
+									<line x1="8" y1="12" x2="16" y2="12" />
+								</>
+							</svg>
+						</a>
+					)
+				}
+			</div>
+		</div>
+	</div>
+</li>
+
+<style>
+	.wrapper {
+		list-style-type: none;
+		padding: 0.25rem;
+		background-color: white;
+		background-image: var(--accent-gradient);
+		background-size: 400%;
+		border-radius: 0.5rem;
+		background-position: 100%;
+		transition: background-position 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+		box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+			0 2px 4px -2px rgba(0, 0, 0, 0.1);
+		overflow: hidden;
+	}
+
+	.card {
+		height: calc(100% - 2rem);
+		display: flex;
+		flex-direction: column;
+		background-color: white;
+		border-radius: 0.5rem;
+		padding: 1rem 1.3rem;
+	}
+	.card-footer {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.card-link,
+	.card-links {
+		text-decoration: none;
+	}
+
+	.card-link {
+		line-height: 1.4;
+		border-radius: 0.35rem;
+		color: #111;
+		opacity: 0.8;
+	}
+
+	.card-links {
+		height: 1rem;
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		gap: 1rem;
+		margin-top: auto;
+		margin-left: auto;
+	}
+
+	.card-heading {
+		margin: 0;
+		font-size: 1.25rem;
+		transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+	}
+	.card-desc {
+		margin-top: 0.5rem;
+		margin-bottom: 0;
+		color: #444;
+	}
+
+	.lang {
+		font-size: 0.875em;
+		font-weight: bold;
+		background: rgba(var(--accent), 12%);
+		color: rgb(var(--accent));
+		border-radius: 4px;
+		padding: 0.3em 0.45em;
+	}
+
+	.wrapper:is(:hover, :focus-within) {
+		background-position: 0;
+	}
+	.wrapper:is(:hover, :focus-within) h2 {
+		color: rgb(var(--accent));
+	}
+</style>
